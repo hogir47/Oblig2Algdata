@@ -1,11 +1,13 @@
 package no.oslomet.cs.algdat;
 
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.Objects;
-
 public class DobbeltLenketListe<T> implements Liste<T>
 {
+    public DobbeltLenketListe() {
+        hode =hale =null;
+        antall=0;
+        endringer=0;
+    }
+
     private static final class Node<T>   // en indre nodeklasse
     {
         // instansvariabler
@@ -37,7 +39,7 @@ public class DobbeltLenketListe<T> implements Liste<T>
     {
         this();
 
-        int i = 0; for (; i < a.length ; i++);
+        int i = 0; for (; i < a.length  && a[i]==null; i++);
 
         if (i < a.length)
         {
@@ -64,5 +66,42 @@ public class DobbeltLenketListe<T> implements Liste<T>
     @Override
     public boolean tom() {
         return antall == 0;
+    }
+
+    @Override
+    public boolean leggInn(T verdi) {
+        return false;
+    }
+    @Override
+    public String toString ()
+    {
+        StringBuilder s = new StringBuilder();
+        s.append('[');
+        if (!tom()){
+            Node<T> p =hode;
+            s.append(p.verdi);
+            while(p!=null){
+                s.append(',').append(' ').append(p.verdi);
+                p=p.neste;
+            }
+        }
+        s.append(']');
+        return s.toString();
+    }
+
+    public String omvendtString()
+    {
+        StringBuilder s = new StringBuilder();
+        s.append('[');
+        if (!tom()){
+            Node<T> p = hale;
+            s.append(p.verdi);
+            while(p!=null){
+                s.append(',').append(' ').append(p.verdi);
+                p=p.forrige;
+            }
+        }
+        s.append(']');
+        return s.toString();
     }
 }
