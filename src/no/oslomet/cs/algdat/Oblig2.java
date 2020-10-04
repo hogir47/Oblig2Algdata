@@ -1,5 +1,8 @@
 package no.oslomet.cs.algdat;
 
+import java.util.Iterator;
+import java.util.Objects;
+
 public class DobbeltLenketListe<T> implements Liste<T>
 {
     public DobbeltLenketListe() {
@@ -69,9 +72,60 @@ public class DobbeltLenketListe<T> implements Liste<T>
     }
 
     @Override
+    public void nullstill() {
+
+    }
+
+    @Override
+    public Iterator< T > iterator() {
+        return null;
+    }
+
+    @Override
     public boolean leggInn(T verdi) {
+        Objects.requireNonNull(verdi);
+        if(tom()) hode =hale=new Node<>(verdi,null,null);
+        else hale=hale.neste =new Node<>(verdi,hale,null);
+        antall++;
+        endringer++;
         return false;
     }
+
+    @Override
+    public void leggInn(int indeks, T verdi) {
+
+    }
+
+    @Override
+    public boolean inneholder(T verdi) {
+        return false;
+    }
+
+    @Override
+    public T hent(int indeks) {
+        return null;
+    }
+
+    @Override
+    public int indeksTil(T verdi) {
+        return 0;
+    }
+
+    @Override
+    public T oppdater(int indeks, T verdi) {
+        return null;
+    }
+
+    @Override
+    public boolean fjern(T verdi) {
+        return false;
+    }
+
+    @Override
+    public T fjern(int indeks) {
+        return null;
+    }
+
     @Override
     public String toString ()
     {
@@ -104,4 +158,5 @@ public class DobbeltLenketListe<T> implements Liste<T>
         s.append(']');
         return s.toString();
     }
+
 }
